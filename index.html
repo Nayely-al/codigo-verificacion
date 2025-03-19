@@ -3,34 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Título en la pestaña del navegador -->
-    <title>BUSTI BANCO - CÓDIGO DE VERIFICACIÓN</title>
-    <script>
-        // Función para generar un código aleatorio
-        function generarCodigo() {
-            let codigo = '';
-            let caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // Letras y números
-            for (let i = 0; i < 6; i++) {
-                codigo += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-            }
-            // Mostrar el código generado en la página
-            document.getElementById("codigo_verificacion").innerText = "Código generado: " + codigo;
-            // Guardar el código en el localStorage para que se pueda validar luego desde el cajero
-            localStorage.setItem("codigo_verificacion", codigo);
+    <title>Código de Verificación - Busti Banco</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
         }
-
-        // Al cargar la página, generar el código automáticamente
-        window.onload = function() {
-            generarCodigo(); // Genera el código automáticamente al cargar la página
+        #codigo-verificacion {
+            font-size: 24px;
+            font-weight: bold;
+            color: red; /* Color rojo para el código */
         }
-    </script>
+        h1 {
+            color: #4CAF50; /* Color verde para el título */
+        }
+    </style>
 </head>
 <body>
-    <!-- Título principal visible en la página -->
-    <h1>BUSTI BANCO</h1>
-    <!-- Subtítulo visible en la página -->
-    <h2>CÓDIGO DE VERIFICACIÓN</h2>
-    
-    <!-- Mostrar el código de verificación generado -->
-    <p id="codigo_verificacion"></p>
-    <p>Por favor, anote este código de verificación y utilícelo en el simulador de cajero.</p>
+    <h1>CÓDIGO DE VERIFICACIÓN DE BUSTI BANCO</h1>
+    <p id="codigo-verificacion">Generando código...</p>
+
+    <script>
+        // Función para obtener el parámetro "codigo" de la URL
+        function getCodigoVerificacion() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('codigo'); // Retorna el valor de "codigo" en la URL
+        }
+
+        // Mostrar el código de verificación en la página
+        var codigoGenerado = getCodigoVerificacion();
+        if (codigoGenerado) {
+            document.getElementById('codigo-verificacion').textContent = 'Tu código de verificación es: ' + codigoGenerado;
+        } else {
+            document.getElementById('codigo-verificacion').textContent = 'No se pudo obtener el código de verificación.';
+        }
+    </script>
+</body>
+</html>
+
