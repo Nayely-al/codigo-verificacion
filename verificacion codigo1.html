@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -6,21 +5,21 @@
     <title>Verificación</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        .codigo { font-size: 24px; font-weight: bold; color: blue; }
+        .codigo { font-size: 36px; font-weight: bold; color: blue; }
     </style>
 </head>
 <body>
     <h1>🔹 Código de Verificación 🔹</h1>
-    <p>Este es tu código único para el retiro:</p>
-    <p class="codigo" id="codigo"></p>
+    <p>Tu código único para el retiro es:</p>
+    <p class="codigo" id="codigo">Cargando...</p>
 
     <script>
-        // Generar un código aleatorio de 6 dígitos
+        // Función para generar un código numérico de 6 dígitos
         function generarCodigo() {
-            return Math.floor(100000 + Math.random() * 900000); // Código de 6 dígitos
+            return Math.floor(100000 + Math.random() * 900000); // Genera un código de 6 dígitos
         }
 
-        // Mostrar el código en la página
+        // Establecer el código generado en el HTML
         document.getElementById("codigo").textContent = generarCodigo();
     </script>
 </body>
