@@ -1,51 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Código de Verificación</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            text-align: center;
-            padding: 50px;
-        }
-
-        h1 {
-            color: #0073e6;
-        }
-
-        .codigo {
-            font-size: 24px;
-            color: #2e8b57;
-            font-weight: bold;
-        }
-
-        .qr {
-            margin-top: 20px;
-        }
-
-        img {
-            max-width: 200px;
-            height: auto;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Código de Verificación</title>
 </head>
 <body>
-    <h1>Código de Verificación</h1>
-    <p>Escanea el código QR o ingresa el código manualmente para proceder con el retiro.</p>
+  <h1>Código de Verificación</h1>
+  <img src="tu_imagen_aqui.jpg" alt="Imagen descriptiva" style="width: 200px;">
+  <p>Tu código de verificación es: <strong id="codigo"></strong></p>
 
-    <div class="codigo">
-        <p>Tu código de verificación es: <strong id="codigo-verificacion">tm4ujn</strong></p>
-    </div>
-
-    <div class="qr">
-        <img src="codigo_qr.png" alt="Código QR de verificación">
-    </div>
-
-    <p>Si no puedes ver el código QR, puedes copiar el código manualmente desde arriba.</p>
+  <script>
+    // Generar código de verificación aleatorio
+    function generarCodigo() {
+      let codigo = Math.random().toString(36).substr(2, 6); // Genera un código aleatorio de 6 caracteres
+      document.getElementById("codigo").textContent = codigo;
+    }
+    generarCodigo();
+  </script>
 </body>
 </html>
-
