@@ -1,27 +1,41 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificación</title>
+    <title>Código de Verificación - Busti Banco</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        .codigo { font-size: 36px; font-weight: bold; color: blue; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #codigo-verificacion {
+            font-size: 24px;
+            font-weight: bold;
+            color: red; /* Cambié el color a rojo */
+        }
+        h1 {
+            color: #4CAF50; /* Color verde para el título */
+        }
     </style>
 </head>
 <body>
-    <h1>🔹 Código de Verificación 🔹</h1>
-    <p>Tu código único para el retiro es:</p>
-    <p class="codigo" id="codigo">Cargando...</p>
-
-    <script type="text/javascript">
-        // Función para generar un código numérico de 6 dígitos
-        function generarCodigo() {
-            return Math.floor(100000 + Math.random() * 900000); // Genera un código de 6 dígitos
+    <h1>CÓDIGO DE VERIFICACIÓN DE BUSTI BANCO</h1>
+    <p id="codigo-verificacion">Generando código...</p>
+    <script>
+        // Función para generar el código de verificación aleatorio
+        function generarCodigoVerificacion(longitud) {
+            var caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var codigo = '';
+            for (var i = 0; i < longitud; i++) {
+                var aleatorio = Math.floor(Math.random() * caracteres.length);
+                codigo += caracteres.charAt(aleatorio);
+            }
+            return codigo;
         }
 
-        // Establecer el código generado en el HTML
-        document.getElementById("codigo").textContent = generarCodigo();
+        // Generar el código de verificación y mostrarlo en el elemento
+        document.getElementById('codigo-verificacion').textContent = 'Tu código de verificación es: ' + generarCodigoVerificacion(8);
     </script>
 </body>
 </html>
