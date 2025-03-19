@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Código de Verificación</title>
+</head>
+<body>
+  <h1>Código de Verificación</h1>
+  <img src="tu_imagen_aqui.jpg" alt="Imagen descriptiva" style="width: 200px;">
+  <p>Tu código de verificación es: <strong id="codigo"></strong></p>
+
+  <script>
+    // Generar código de verificación aleatorio
+    function generarCodigo() {
+      let codigo = Math.random().toString(36).substr(2, 6); // Genera un código aleatorio de 6 caracteres
+      document.getElementById("codigo").textContent = codigo;
+    }
+    generarCodigo();
+  </script>
+</body>
+</html>
