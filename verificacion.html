@@ -1,0 +1,21 @@
+<!-- verificacion.html -->
+<html>
+<head>
+    <title>Verificación de Código</title>
+</head>
+<body>
+    <h1>Tu código de verificación es:</h1>
+    <p id="codigo-verificacion"></p>
+    
+    <script>
+        // Generar un código aleatorio
+        function generarCodigo() {
+            let codigo = Math.random().toString(36).substring(2, 10).toUpperCase();
+            document.getElementById("codigo-verificacion").innerText = codigo;
+        }
+
+        // Ejecutar la función para mostrar el código al cargar la página
+        generarCodigo();
+    </script>
+</body>
+</html>
