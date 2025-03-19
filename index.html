@@ -1,22 +1,51 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bienvenido a la Página de Verificación</title>
+    <title>Código de Verificación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #0073e6;
+        }
+
+        .codigo {
+            font-size: 24px;
+            color: #2e8b57;
+            font-weight: bold;
+        }
+
+        .qr {
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 200px;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a la Página de Verificación</h1>
-    </header>
-    
-    <section>
-        <p>Haz clic para ir a la página de verificación del código:</p>
-        <p><a href="verificacion_codigo1.html">Ir a Verificación de Código</a></p>
-    </section>
-    
-    <footer>
-        <p>© 2025 Banco Pichincha</p>
-    </footer>
+    <h1>Código de Verificación</h1>
+    <p>Escanea el código QR o ingresa el código manualmente para proceder con el retiro.</p>
+
+    <div class="codigo">
+        <p>Tu código de verificación es: <strong id="codigo-verificacion">tm4ujn</strong></p>
+    </div>
+
+    <div class="qr">
+        <img src="codigo_qr.png" alt="Código QR de verificación">
+    </div>
+
+    <p>Si no puedes ver el código QR, puedes copiar el código manualmente desde arriba.</p>
 </body>
 </html>
+
