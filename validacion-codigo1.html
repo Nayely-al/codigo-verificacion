@@ -1,41 +1,37 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Código de Verificación - Busti Banco</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        #codigo-verificacion {
-            font-size: 24px;
-            font-weight: bold;
-            color: red; /* Cambié el color a rojo */
-        }
-        h1 {
-            color: #4CAF50; /* Color verde para el título */
-        }
-    </style>
-</head>
-<body>
-    <h1>CÓDIGO DE VERIFICACIÓN DE BUSTI BANCO</h1>
-    <p id="codigo-verificacion">Generando código...</p>
+    <!-- Título en la pestaña del navegador -->
+    <title>BUSTI BANCO - CÓDIGO DE VERIFICACIÓN</title>
     <script>
-        // Función para generar el código de verificación aleatorio
-        function generarCodigoVerificacion(longitud) {
-            var caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            var codigo = '';
-            for (var i = 0; i < longitud; i++) {
-                var aleatorio = Math.floor(Math.random() * caracteres.length);
-                codigo += caracteres.charAt(aleatorio);
+        // Función para generar un código aleatorio
+        function generarCodigo() {
+            let codigo = '';
+            let caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // Letras y números
+            for (let i = 0; i < 6; i++) {
+                codigo += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
             }
-            return codigo;
+            // Mostrar el código generado en la página
+            document.getElementById("codigo_verificacion").innerText = "Código generado: " + codigo;
+            // Guardar el código en el localStorage para que se pueda validar luego desde el cajero
+            localStorage.setItem("codigo_verificacion", codigo);
         }
 
-        // Generar el código de verificación y mostrarlo en el elemento
-        document.getElementById('codigo-verificacion').textContent = 'Tu código de verificación es: ' + generarCodigoVerificacion(8);
+        // Al cargar la página, generar el código automáticamente
+        window.onload = function() {
+            generarCodigo(); // Genera el código automáticamente al cargar la página
+        }
     </script>
-</body>
-</html>
+</head>
+<body>
+    <!-- Título principal visible en la página -->
+    <h1>BUSTI BANCO</h1>
+    <!-- Subtítulo visible en la página -->
+    <h2>CÓDIGO DE VERIFICACIÓN</h2>
+    
+    <!-- Mostrar el código de verificación generado -->
+    <p id="codigo_verificacion"></p>
+    <p>Por favor, anote este código de verificación y utilícelo en el simulador de cajero.</p>
+<
