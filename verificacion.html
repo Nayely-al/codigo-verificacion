@@ -1,21 +1,28 @@
-<!-- verificacion.html -->
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <title>Verificación de Código</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .codigo { font-size: 24px; font-weight: bold; color: blue; }
+    </style>
 </head>
 <body>
-    <h1>Tu código de verificación es:</h1>
-    <p id="codigo-verificacion"></p>
-    
+    <h1>🔹 Código de Verificación 🔹</h1>
+    <p>Este es tu código único para el retiro:</p>
+    <p class="codigo" id="codigo"></p>
+
     <script>
-        // Generar un código aleatorio
+        // Generar un código aleatorio de 6 dígitos
         function generarCodigo() {
-            let codigo = Math.random().toString(36).substring(2, 10).toUpperCase();
-            document.getElementById("codigo-verificacion").innerText = codigo;
+            return Math.floor(100000 + Math.random() * 900000); // Código de 6 dígitos
         }
 
-        // Ejecutar la función para mostrar el código al cargar la página
-        generarCodigo();
+        // Mostrar el código en la página
+        document.getElementById("codigo").textContent = generarCodigo();
     </script>
 </body>
 </html>
+
