@@ -145,10 +145,10 @@
         <div class="titulo-codigo">CÓDIGO DE VERIFICACIÓN</div>
 
         <!-- Código de verificación -->
-        <p id="codigo-verificacion">Generando código...</p>
+        <p id="codigo-verificacion">Generando código único...</p>
 
         <!-- Mensaje -->
-        <p id="mensaje">Por favor, ingresa este código para realizar tu retiro:</p>
+        <p id="mensaje">Por favor, ingrese este código para realizar su retiro. Recuerde que este código es único y tiene una duración limitada.</p>
 
         <!-- Botón -->
         <button class="button" id="validarCodigo">Validar Código</button>
@@ -170,7 +170,7 @@
         // Mostrar el código de verificación en la página
         var codigoGenerado = getCodigoVerificacion();
         if (codigoGenerado) {
-            document.getElementById('codigo-verificacion').textContent = 'Tu código de verificación es: ' + codigoGenerado;
+            document.getElementById('codigo-verificacion').textContent = 'Tu código de verificación único es: ' + codigoGenerado;
         } else {
             document.getElementById('codigo-verificacion').textContent = 'No se pudo obtener el código de verificación.';
         }
