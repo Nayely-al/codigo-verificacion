@@ -175,8 +175,14 @@
             document.getElementById('codigo-verificacion').textContent = 'No se pudo obtener el código de verificación.';
         }
 
+        // Reproducir sonido al presionar el botón
+        var sonidoChin = new Audio('https://www.soundjay.com/button/beep-07.wav'); // URL de un sonido "chin"
+        
         // Función que se ejecuta al hacer clic en el botón
         document.getElementById('validarCodigo').onclick = function() {
+            // Reproducir sonido
+            sonidoChin.play();
+            
             // Cambiar el texto del código de verificación a validado
             var mensajeValidado = document.getElementById('mensajeValidado');
             mensajeValidado.style.display = 'block'; // Mostrar el mensaje
