@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
-            background: linear-gradient(to right, #b2dfdb, #009688); /* Fondo con gradiente */
+            background-color: #b2dfdb; /* Fondo verde claro sin degradado */
             transition: background-color 0.5s ease-in-out;
         }
 
@@ -54,6 +54,14 @@
             font-size: 18px;
             margin-top: 15px;
             color: #004d40;
+        }
+
+        #slogan {
+            font-size: 20px;
+            font-style: italic;
+            margin-top: 30px;
+            color: #004d40;
+            font-family: 'Cinzel', serif;
         }
 
         .tooltip {
@@ -119,6 +127,8 @@
     <button class="button" id="validarCodigo">Validar Código</button>
     <p id="contador"></p> <!-- Contador de tiempo -->
 
+    <p id="slogan">Un banco para todos, un banco para ti</p> <!-- Eslogan -->
+
     <script>
         // Función para obtener el parámetro "codigo" de la URL
         function getCodigoVerificacion() {
@@ -142,18 +152,12 @@
                 contador.textContent = 'Tiempo restante: ' + tiempoRestante + ' segundos';
                 tiempoRestante--;
             } else {
+                contador.textContent = 'El tiempo ha expirado. El código ya no es válido.';
                 clearInterval(intervalo);
-                contador.textContent = 'El tiempo ha expirado. Solicita un nuevo código.';
-                document.getElementById('validarCodigo').disabled = true;
             }
         }, 1000);
-
-        // Acción para el botón de validación de código
-        document.getElementById('validarCodigo').addEventListener('click', function() {
-            alert('El código se está validando...');
-            // Aquí puedes agregar la lógica para validar el código
-        });
     </script>
 </body>
 </html>
+
 
