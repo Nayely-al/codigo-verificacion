@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Código de Verificación - Busti Banco</title>
     <style>
+        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
-            background-color: #b2dfdb; /* Fondo verde claro sin degradado */
+            background-color: #b2dfdb; /* Fondo verde claro */
             transition: background-color 0.5s ease-in-out;
+            padding: 0 20px;
         }
 
         #logo {
             max-width: 200px;
             animation: fadeIn 2s ease-out; /* Efecto de desvanecimiento */
+            margin-bottom: 20px;
         }
 
         @keyframes fadeIn {
@@ -28,14 +31,14 @@
             color: #004d40; /* Título en color oscuro */
             font-size: 50px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         h2 {
             font-family: 'Cinzel', serif;
             color: #000000; /* Subtítulo en negro */
             font-size: 30px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         #codigo-verificacion {
@@ -48,6 +51,7 @@
             border-radius: 5px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             display: inline-block;
+            background-color: #fff; /* Fondo blanco para el código */
         }
 
         #mensaje {
@@ -64,6 +68,40 @@
             font-family: 'Cinzel', serif;
         }
 
+        /* Recuadro amarillo para "CÓDIGO DE VERIFICACIÓN" */
+        .titulo-codigo {
+            background-color: #ffeb3b; /* Fondo amarillo */
+            padding: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+            border-radius: 5px;
+            margin: 20px 0;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilo para el botón */
+        .button {
+            background-color: #004d40;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #002f24;
+        }
+
+        /* Tooltip */
         .tooltip {
             position: relative;
             display: inline-block;
@@ -92,41 +130,44 @@
             opacity: 1;
         }
 
-        .button {
-            background-color: #004d40;
-            color: white;
-            padding: 10px 20px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 30px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .button:hover {
-            background-color: #002f24;
-        }
-
+        /* Contador de tiempo */
         #contador {
             font-size: 18px;
             color: #ff5722;
         }
+
+        /* Espaciado y separación de contenido */
+        .contenido {
+            margin: 0 auto;
+            max-width: 800px;
+        }
     </style>
 </head>
 <body>
-    <img id="logo" src="https://github.com/Nayely-al/codigo-verificacion/blob/main/Adobe%20Express%20-%20file.png?raw=true" alt="Busti Banco Logo">
-    <h1>BUSTI BANK</h1>
-    <p id="slogan">Un banco para todos, un banco para ti</p> <!-- Eslogan debajo del título -->
-    <h2>CÓDIGO DE VERIFICACIÓN</h2>
+    <div class="contenido">
+        <!-- Logo -->
+        <img id="logo" src="https://github.com/Nayely-al/codigo-verificacion/blob/main/Adobe%20Express%20-%20file.png?raw=true" alt="Busti Banco Logo">
 
-    <p id="codigo-verificacion" class="tooltip">Generando código...</p>
-    <span class="tooltiptext">Este es tu código único para realizar el retiro.</span>
+        <!-- Título y slogan -->
+        <h1>BUSTI BANK</h1>
+        <p id="slogan">Un banco para todos, un banco para ti</p> <!-- Eslogan debajo del título -->
 
-    <p id="mensaje">Por favor, ingresa este código para realizar tu retiro:</p>
+        <!-- Recuadro amarillo para "Código de Verificación" -->
+        <div class="titulo-codigo">CÓDIGO DE VERIFICACIÓN</div>
 
-    <button class="button" id="validarCodigo">Validar Código</button>
-    <p id="contador"></p> <!-- Contador de tiempo -->
+        <!-- Código de verificación -->
+        <p id="codigo-verificacion" class="tooltip">Generando código...</p>
+        <span class="tooltiptext">Este es tu código único para realizar el retiro.</span>
+
+        <!-- Mensaje -->
+        <p id="mensaje">Por favor, ingresa este código para realizar tu retiro:</p>
+
+        <!-- Botón -->
+        <button class="button" id="validarCodigo">Validar Código</button>
+
+        <!-- Contador -->
+        <p id="contador"></p>
+    </div>
 
     <script>
         // Función para obtener el parámetro "codigo" de la URL
