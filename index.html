@@ -4,133 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Código de Verificación - Busti Banco</title>
-    
-    <!-- Importar la fuente Cinzel Bold de Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet"> <!-- Fuente Cinzel -->
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #E8F5E9; /* Fondo verde claro */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
             text-align: center;
-            flex-direction: column;
+            margin-top: 50px;
+            background-color: #b2dfdb; /* Fondo verde un poco más oscuro */
         }
-
         h1 {
-            font-family: 'Cinzel', serif; /* Fuente Cinzel Bold aplicada aquí */
-            font-size: 60px;
+            font-family: 'Cinzel', serif;
             font-weight: bold;
-            color: #2C6B2F; /* Título oscuro */
-            margin-top: 30px;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        h2 {
-            font-size: 36px;
-            color: black; /* Subtítulo en negro */
+            font-size: 50px;
+            color: #2f4f4f; /* Titulo en color oscuro */
             margin-top: 20px;
         }
-
         #codigo-verificacion {
-            font-size: 30px;
+            font-size: 24px;
             font-weight: bold;
-            color: red; /* Código en color rojo */
+            color: red; /* Color rojo para el código */
             margin-top: 20px;
-            animation: slideIn 1.5s ease-out;
         }
-
-        .logo {
-            width: 200px; /* Ajusta el tamaño del logo */
-            margin-top: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 2s ease-out;
-        }
-
-        .content-box {
-            background-color: #ffffff;
-            border: 2px solid #4CAF50; /* Borde verde para el recuadro */
-            padding: 30px;
-            margin-top: 30px;
-            display: inline-block;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            animation: zoomIn 1s ease-out;
-        }
-
-        p {
+        #mensaje {
             font-size: 18px;
-            color: #333333;
-            margin-top: 10px;
+            font-weight: 600;
+            color: #333; /* Color negro oscuro para el mensaje */
+            margin-top: 20px;
+            font-style: italic; /* Estilo en cursiva para hacerlo más elegante */
         }
-
-        /* Estilo para el eslogan */
-        .slogan {
-            font-size: 22px;
-            color: #4CAF50; /* Verde claro para el eslogan */
-            margin-top: 15px;
-            font-style: italic;
-            animation: fadeIn 2s ease-out;
+        h2 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #333; /* Color negro para subtítulo */
+            margin-top: 30px;
         }
-
-        /* Animaciones */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        .logo {
+            width: 100px; /* Ajustar tamaño del logo */
+            margin-top: 30px;
         }
-
-        @keyframes slideIn {
-            0% { transform: translateY(-20px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes zoomIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        /* Responsividad */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 40px;
-            }
-
-            h2 {
-                font-size: 28px;
-            }
-
-            #codigo-verificacion {
-                font-size: 24px;
-            }
-
-            .logo {
-                width: 150px;
-            }
+        .content {
+            border: 2px solid #2f4f4f;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            margin-top: 30px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
+    <img src="https://github.com/Nayely-al/codigo-verificacion/blob/main/Adobe%20Express%20-%20file.png?raw=true" alt="Busti Banco Logo" class="logo"> <!-- Logo -->
+    <h1>BUSTI BANCO</h1>
+    <h2>CÓDIGO DE VERIFICACIÓN</h2>
 
-    <!-- Logo al inicio -->
-    <img src="https://github.com/Nayely-al/codigo-verificacion/blob/main/Adobe%20Express%20-%20file.png?raw=true" alt="Logo Busti Banco" class="logo">
-
-    <!-- Título principal -->
-    <h1>BUSTI BANK</h1>
-
-    <!-- Eslogan -->
-    <p class="slogan">Un banco para todos, un banco para ti</p>
-
-    <!-- Caja con el código de verificación -->
-    <div class="content-box">
-        <h2>CÓDIGO DE VERIFICACIÓN</h2>
+    <div class="content">
         <p id="codigo-verificacion">Generando código...</p>
-        <p>Ingresa este código para realizar tu retiro.</p>
+        <p id="mensaje">Por favor, ingrese el código de verificación proporcionado para completar su solicitud de retiro.</p>
     </div>
 
     <script>
@@ -148,6 +80,5 @@
             document.getElementById('codigo-verificacion').textContent = 'No se pudo obtener el código de verificación.';
         }
     </script>
-
 </body>
 </html>
