@@ -11,7 +11,6 @@
             text-align: center;
             margin-top: 50px;
             background-color: #b2dfdb; /* Fondo verde claro */
-            transition: background-color 0.5s ease-in-out;
             padding: 0 20px;
         }
 
@@ -104,39 +103,20 @@
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más grande */
         }
 
-        .button:active {
-            background-color: #00796b;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-            transform: scale(0.9); /* Efecto al hacer clic */
-        }
-
-        /* Tooltip */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 160px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
+        /* Estilo cuando el código es validado */
+        .validado {
+            background-color: #388e3c; /* Verde de validación */
+            color: white;
+            padding: 10px;
+            font-size: 24px;
             border-radius: 5px;
-            padding: 5px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%; /* Position the tooltip above the text */
-            left: 50%;
-            margin-left: -80px;
-            opacity: 0;
-            transition: opacity 0.3s;
+            margin-top: 20px;
+            font-weight: bold;
         }
 
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
+        /* Animación del mensaje emergente */
+        .validado-animado {
+            animation: fadeIn 2s ease-in-out;
         }
 
         /* Contador de tiempo */
@@ -165,14 +145,16 @@
         <div class="titulo-codigo">CÓDIGO DE VERIFICACIÓN</div>
 
         <!-- Código de verificación -->
-        <p id="codigo-verificacion" class="tooltip">Generando código...</p>
-        <span class="tooltiptext">Este es tu código único para realizar el retiro.</span>
+        <p id="codigo-verificacion">Generando código...</p>
 
         <!-- Mensaje -->
         <p id="mensaje">Por favor, ingresa este código para realizar tu retiro:</p>
 
-        <!-- Botón -->
-        <button class="button" id="validarCodigo">Validar Código</button>
+        <!-- Campo para ingresar el código -->
+        <input type="text" id="codigoInput" placeholder="Ingresa tu código de verificación" style="padding: 10px; font-size: 18px; border: 2px solid #004d40; border-radius: 5px; margin-top: 20px; width: 70%;"/>
+
+        <!-- Mensaje de validación -->
+        <div id="mensajeValidado" class="validado validado-animado" style="display:none;">¡Código Validado Correctamente!</div>
 
         <!-- Contador -->
         <p id="contador"></p>
@@ -193,6 +175,40 @@
             document.getElementById('codigo-verificacion').textContent = 'No se pudo obtener el código de verificación.';
         }
 
+        // Función para reproducir el mensaje de voz
+        function reproducirVoz() {
+            var mensaje = new SpeechSynthesisUtterance('SU RETIRO HA SIDO EXITOSO');
+            mensaje.lang = 'es-ES'; // Idioma español
+            speechSynthesis.speak(mensaje); // Reproducir el mensaje
+        }
+
+        // Función para validar el código de verificación
+        function validarCodigo() {
+            const codigoIngresado = document.getElementById('codigoInput').value;
+            const codigoGenerado = getCodigoVerificacion(); // Código que se muestra en la página
+
+            if (codigoIngresado === codigoGenerado) {
+                // Si el código es correcto, mostrar el mensaje de validación
+                var mensajeValidado = document.getElementById('mensajeValidado');
+                mensajeValidado.style.display = 'block'; // Mostrar el mensaje
+                mensajeValidado.style.animation = 'fadeIn 2s ease-in-out'; // Animación del mensaje
+
+                // Desactivar el campo de entrada
+                document.getElementById('codigoInput').disabled = true;
+
+                // Reproducir la voz
+                reproducirVoz();
+            } else {
+                alert('Código incorrecto. Por favor, inténtalo de nuevo.');
+            }
+        }
+
+        // Detectar cuando el usuario ingresa el código en el campo de texto y lo valida automáticamente
+        document.getElementById('codigoInput').addEventListener('input', function() {
+            // Validar automáticamente cuando se ingresa el código
+            validarCodigo();
+        });
+
         // Agregar un temporizador que desaparezca el código tras un tiempo
         var tiempoRestante = 30; // 30 segundos de cuenta atrás
         var contador = document.getElementById('contador');
@@ -204,7 +220,4 @@
                 contador.textContent = 'El tiempo ha expirado. El código ya no es válido.';
                 clearInterval(intervalo);
             }
-        }, 1000);
-    </script>
-</body>
-</html>
+        }, 
