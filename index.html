@@ -4,66 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Código de Verificación - Busti Banco</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet"> <!-- Fuente Cinzel -->
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
-            background-color: #b2dfdb; /* Fondo verde original */
+            background: linear-gradient(to right, #b2dfdb, #009688); /* Fondo con gradiente */
+            transition: background-color 0.5s ease-in-out;
         }
+
+        #logo {
+            max-width: 200px;
+            animation: fadeIn 2s ease-out; /* Efecto de desvanecimiento */
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
         h1 {
             font-family: 'Cinzel', serif;
-            font-weight: bold;
+            color: #004d40; /* Título en color oscuro */
             font-size: 50px;
-            color: #2f4f4f; /* Titulo en color oscuro */
-            margin-top: 20px;
-        }
-        #codigo-verificacion {
-            font-size: 24px;
             font-weight: bold;
-            color: red; /* Color rojo para el código */
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: #000000; /* Subtítulo en negro */
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        #codigo-verificacion {
+            font-size: 26px;
+            font-weight: bold;
+            color: red; /* Código de verificación en rojo */
+            margin: 20px 0;
+            padding: 10px;
+            border: 2px solid #004d40;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+
         #mensaje {
             font-size: 18px;
-            font-weight: 600;
-            color: #333; /* Color negro oscuro para el mensaje */
-            margin-top: 20px;
-            font-style: italic; /* Estilo en cursiva para hacerlo más elegante */
+            margin-top: 15px;
+            color: #004d40;
         }
-        h2 {
-            font-size: 24px;
-            font-weight: 500;
-            color: #333; /* Color negro para subtítulo */
-            margin-top: 30px;
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
         }
-        .logo {
-            width: 100px; /* Ajustar tamaño del logo */
-            margin-top: 30px;
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 160px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position the tooltip above the text */
+            left: 50%;
+            margin-left: -80px;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        .content {
-            border: 2px solid #2f4f4f;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #ffffff;
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .button {
+            background-color: #004d40;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             margin-top: 30px;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover {
+            background-color: #002f24;
+        }
+
+        #contador {
+            font-size: 18px;
+            color: #ff5722;
         }
     </style>
 </head>
 <body>
-    <img src="https://github.com/Nayely-al/codigo-verificacion/blob/main/Adobe%20Express%20-%20file.png?raw=true" alt="Busti Banco Logo" class="logo"> <!-- Logo -->
+    <img id="logo" src="https://github.com/Nayely-al/codigo-verificacion/blob/main/Adobe%20Express%20-%20file.png?raw=true" alt="Busti Banco Logo">
     <h1>BUSTI BANK</h1>
     <h2>CÓDIGO DE VERIFICACIÓN</h2>
 
-    <div class="content">
-        <p id="codigo-verificacion">Generando código...</p>
-        <p id="mensaje">Por favor, ingrese el código de verificación proporcionado para completar su solicitud de retiro.</p>
-    </div>
+    <p id="codigo-verificacion" class="tooltip">Generando código...</p>
+    <span class="tooltiptext">Este es tu código único para realizar el retiro.</span>
+
+    <p id="mensaje">Por favor, ingresa este código para realizar tu retiro:</p>
+
+    <button class="button" id="validarCodigo">Validar Código</button>
+    <p id="contador"></p> <!-- Contador de tiempo -->
 
     <script>
         // Función para obtener el parámetro "codigo" de la URL
@@ -79,6 +133,27 @@
         } else {
             document.getElementById('codigo-verificacion').textContent = 'No se pudo obtener el código de verificación.';
         }
+
+        // Agregar un temporizador que desaparezca el código tras un tiempo
+        var tiempoRestante = 30; // 30 segundos de cuenta atrás
+        var contador = document.getElementById('contador');
+        var intervalo = setInterval(function() {
+            if (tiempoRestante > 0) {
+                contador.textContent = 'Tiempo restante: ' + tiempoRestante + ' segundos';
+                tiempoRestante--;
+            } else {
+                clearInterval(intervalo);
+                contador.textContent = 'El tiempo ha expirado. Solicita un nuevo código.';
+                document.getElementById('validarCodigo').disabled = true;
+            }
+        }, 1000);
+
+        // Acción para el botón de validación de código
+        document.getElementById('validarCodigo').addEventListener('click', function() {
+            alert('El código se está validando...');
+            // Aquí puedes agregar la lógica para validar el código
+        });
     </script>
 </body>
 </html>
+
