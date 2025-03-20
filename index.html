@@ -150,14 +150,14 @@
         <!-- Mensaje -->
         <p id="mensaje">Por favor, ingresa este código para realizar tu retiro:</p>
 
-        <!-- Campo para ingresar el código -->
-        <input type="text" id="codigoInput" placeholder="Ingresa tu código de verificación" style="padding: 10px; font-size: 18px; border: 2px solid #004d40; border-radius: 5px; margin-top: 20px; width: 70%;"/>
-
-        <!-- Mensaje de validación -->
-        <div id="mensajeValidado" class="validado validado-animado" style="display:none;">¡Código Validado Correctamente!</div>
+        <!-- Botón -->
+        <button class="button" id="validarCodigo">Validar Código</button>
 
         <!-- Contador -->
         <p id="contador"></p>
+
+        <!-- Mensaje de validación -->
+        <div id="mensajeValidado" class="validado validado-animado" style="display:none;">¡Código Validado Correctamente!</div>
     </div>
 
     <script>
@@ -175,39 +175,24 @@
             document.getElementById('codigo-verificacion').textContent = 'No se pudo obtener el código de verificación.';
         }
 
-        // Función para reproducir el mensaje de voz
-        function reproducirVoz() {
-            var mensaje = new SpeechSynthesisUtterance('SU RETIRO HA SIDO EXITOSO');
-            mensaje.lang = 'es-ES'; // Idioma español
-            speechSynthesis.speak(mensaje); // Reproducir el mensaje
-        }
+        // Función que se ejecuta al hacer clic en el botón
+        document.getElementById('validarCodigo').onclick = function() {
+            // Cambiar el texto del código de verificación a validado
+            var mensajeValidado = document.getElementById('mensajeValidado');
+            mensajeValidado.style.display = 'block'; // Mostrar el mensaje
+            mensajeValidado.style.animation = 'fadeIn 2s ease-in-out'; // Aplicar la animación
 
-        // Función para validar el código de verificación
-        function validarCodigo() {
-            const codigoIngresado = document.getElementById('codigoInput').value;
-            const codigoGenerado = getCodigoVerificacion(); // Código que se muestra en la página
+            // Desactivar el botón para evitar clics múltiples
+            document.getElementById('validarCodigo').disabled = true;
+            document.getElementById('validarCodigo').style.backgroundColor = '#388e3c'; // Cambiar color del botón
 
-            if (codigoIngresado === codigoGenerado) {
-                // Si el código es correcto, mostrar el mensaje de validación
-                var mensajeValidado = document.getElementById('mensajeValidado');
-                mensajeValidado.style.display = 'block'; // Mostrar el mensaje
-                mensajeValidado.style.animation = 'fadeIn 2s ease-in-out'; // Animación del mensaje
+            // Cambiar el estilo del código de verificación
+            document.getElementById('codigo-verificacion').style.color = '#388e3c'; // Cambiar color del código
+            document.getElementById('codigo-verificacion').style.fontSize = '30px'; // Hacer el texto más grande
 
-                // Desactivar el campo de entrada
-                document.getElementById('codigoInput').disabled = true;
-
-                // Reproducir la voz
-                reproducirVoz();
-            } else {
-                alert('Código incorrecto. Por favor, inténtalo de nuevo.');
-            }
-        }
-
-        // Detectar cuando el usuario ingresa el código en el campo de texto y lo valida automáticamente
-        document.getElementById('codigoInput').addEventListener('input', function() {
-            // Validar automáticamente cuando se ingresa el código
-            validarCodigo();
-        });
+            // Mostrar un mensaje de validación adicional
+            document.getElementById('mensaje').innerHTML = '¡El código ha sido validado correctamente!';
+        };
 
         // Agregar un temporizador que desaparezca el código tras un tiempo
         var tiempoRestante = 30; // 30 segundos de cuenta atrás
@@ -220,4 +205,7 @@
                 contador.textContent = 'El tiempo ha expirado. El código ya no es válido.';
                 clearInterval(intervalo);
             }
-        }, 
+        }, 1000);
+    </script>
+</body>
+</html>
