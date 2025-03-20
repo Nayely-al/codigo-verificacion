@@ -87,18 +87,27 @@
         .button {
             background-color: #004d40;
             color: white;
-            padding: 10px 20px;
-            font-size: 18px;
+            padding: 15px 30px;
+            font-size: 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             margin-top: 30px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease;
+            transition: all 0.4s ease;
         }
 
+        /* Efectos cuando el mouse pasa por encima */
         .button:hover {
             background-color: #002f24;
+            transform: scale(1.1); /* Efecto de expansión */
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más grande */
+        }
+
+        .button:active {
+            background-color: #00796b;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9); /* Efecto al hacer clic */
         }
 
         /* Tooltip */
@@ -141,63 +150,17 @@
             margin: 0 auto;
             max-width: 800px;
         }
-    </style>
-</head>
-<body>
-    <div class="contenido">
-        <!-- Logo -->
-        <img id="logo" src="https://github.com/Nayely-al/codigo-verificacion/blob/main/Adobe%20Express%20-%20file.png?raw=true" alt="Busti Banco Logo">
 
-        <!-- Título y slogan -->
-        <h1>BUSTI BANK</h1>
-        <p id="slogan">Un banco para todos, un banco para ti</p> <!-- Eslogan debajo del título -->
-
-        <!-- Recuadro amarillo para "Código de Verificación" -->
-        <div class="titulo-codigo">CÓDIGO DE VERIFICACIÓN</div>
-
-        <!-- Código de verificación -->
-        <p id="codigo-verificacion" class="tooltip">Generando código...</p>
-        <span class="tooltiptext">Este es tu código único para realizar el retiro.</span>
-
-        <!-- Mensaje -->
-        <p id="mensaje">Por favor, ingresa este código para realizar tu retiro:</p>
-
-        <!-- Botón -->
-        <button class="button" id="validarCodigo">Validar Código</button>
-
-        <!-- Contador -->
-        <p id="contador"></p>
-    </div>
-
-    <script>
-        // Función para obtener el parámetro "codigo" de la URL
-        function getCodigoVerificacion() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('codigo'); // Retorna el valor de "codigo" en la URL
-        }
-
-        // Mostrar el código de verificación en la página
-        var codigoGenerado = getCodigoVerificacion();
-        if (codigoGenerado) {
-            document.getElementById('codigo-verificacion').textContent = 'Tu código de verificación es: ' + codigoGenerado;
-        } else {
-            document.getElementById('codigo-verificacion').textContent = 'No se pudo obtener el código de verificación.';
-        }
-
-        // Agregar un temporizador que desaparezca el código tras un tiempo
-        var tiempoRestante = 30; // 30 segundos de cuenta atrás
-        var contador = document.getElementById('contador');
-        var intervalo = setInterval(function() {
-            if (tiempoRestante > 0) {
-                contador.textContent = 'Tiempo restante: ' + tiempoRestante + ' segundos';
-                tiempoRestante--;
-            } else {
-                contador.textContent = 'El tiempo ha expirado. El código ya no es válido.';
-                clearInterval(intervalo);
+        /* Media Queries para dispositivos móviles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 30px;
             }
-        }, 1000);
-    </script>
-</body>
-</html>
 
+            .titulo-codigo {
+                font-size: 24px;
+            }
 
+            .button {
+                font-size: 16px;
+                padding: 12px 2
